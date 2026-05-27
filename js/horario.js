@@ -75,7 +75,7 @@ function verificarModoReserva() {
 
 
 
-    banner.innerHTML = '📅 Fora do horário de atendimento — pedidos apenas como <strong>reserva</strong>';
+    banner.innerHTML = '<div class="container">📅 Fora do horário de atendimento — pedidos apenas como <strong>reserva</strong></div>';
 
 
 

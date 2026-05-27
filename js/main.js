@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   gerarHorarios();
   preencherDosCookies();
   carregarDoServidor();
+  initCarrosselScroll();
   ajustarCatScroll();
   verificarModoReserva();
 });

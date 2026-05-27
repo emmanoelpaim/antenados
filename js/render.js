@@ -503,6 +503,7 @@ function renderCardapio() {
 
     const q = (document.getElementById('search-input') || {}).value;
     if (q && q.trim()) aplicarFiltroBusca(q.trim());
+    initCarrosselScroll(main);
 }
 
 function renderItem(item) {

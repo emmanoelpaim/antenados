@@ -4,7 +4,7 @@
 
 .carousel-wrap {
   position: relative;
-  margin: 0 -4px 8px;
+  margin: 0 0 8px;
 }
 
 .carousel-track {
@@ -12,10 +12,26 @@
   gap: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 4px 4px 16px;
+  padding: 4px 0 16px;
   scrollbar-width: thin;
   scrollbar-color: var(--blue) transparent;
   -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+.carousel-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.cat-visual-scroll {
+  cursor: grab;
+}
+
+.cat-visual-scroll.is-dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -82,6 +98,14 @@
   border-radius: 0 0 12px 12px;
   padding: 11px;
   font-size: 0.82rem;
+}
+
+@media (min-width: 600px) {
+  .item-card--carousel {
+    flex: 0 0 260px;
+    max-width: 260px;
+    min-width: 260px;
+  }
 }
 
 .item-card--hidden {

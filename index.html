@@ -12,11 +12,14 @@
 <link rel="stylesheet" href="css/carousel.css">
 </head>
 <body><header>
+    <div class="container">
     <div class="logo-topo">LANCHONETE E PASTELARIA DO</div>
     <div class="nome-loja">ASSIS</div>
     <div class="subtitulo">35 anos de história · Massa caseira de tradição</div>
+    </div>
 </header>
 <div class="search-sticky-wrap" id="search-sticky-wrap">
+    <div class="container">
         <div class="search-row">
         <div class="search-box">
         <span>🔍</span>
@@ -35,9 +38,11 @@
         <button class="cat-visual-btn" data-grupo="bebidas" onclick="scrollParaGrupo('bebidas',this)"><span class="cat-v-icon">🥤</span><span class="cat-v-label">Bebidas</span></button>
         <button class="cat-visual-btn" data-grupo="quentes" onclick="scrollParaGrupo('quentes',this)"><span class="cat-v-icon">☕</span><span class="cat-v-label">Beb. Quentes</span></button>
     </div>
+    </div>
 </div>
 <div class="cat-scroll" id="cat-scroll" style="display:none"></div>
 <section class="favoritos-section">
+    <div class="container">
     <div class="favoritos-header">
         <div class="favoritos-titulo">⭐ Favoritos da Casa</div>
         <div class="favoritos-sub">Os mais pedidos pelos nossos clientes</div>
@@ -45,9 +50,15 @@
     <div class="podio-wrap" id="podio-wrap">
         <div style="color:rgba(255,255,255,.4);font-size:.8rem;text-align:center;width:100%;padding:20px 0">Carregando...</div>
     </div>
+    </div>
 </section>
-<div id="resultados-busca"></div>
-<main id="main-cardapio"></main>
+<div id="resultados-busca" class="container"></div>
+<main id="main-cardapio" class="container"></main>
+<footer class="site-footer">
+    <div class="container">
+        <p>Desenvolvido por <a href="https://flowuphub.com.br" target="_blank" rel="noopener noreferrer">FlowUp</a> 2026</p>
+    </div>
+</footer>
 <!-- CONFIRMAÇÃO -->
 <div class="confirmacao-overlay" id="conf-overlay">
     <div class="confirmacao-box">
@@ -185,6 +196,7 @@
 <script src="js/checkout.js"></script>
 <script src="js/horario.js"></script>
 <script src="js/api.js"></script>
+<script src="js/carousel.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
