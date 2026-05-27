@@ -1,0 +1,41 @@
+header{background:var(--blue);color:#fff;text-align:center;padding:20px 16px 16px;position:relative;box-shadow:0 2px 12px rgba(13,43,140,.3);}
+header .logo-topo{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:3px;opacity:.7;}
+header .nome-loja{font-family:'Barlow Condensed',sans-serif;font-size:2.4rem;font-weight:900;color:var(--red);letter-spacing:1px;line-height:1;}
+header .subtitulo{font-size:.75rem;opacity:.6;letter-spacing:2px;margin-top:2px;}
+.search-sticky-wrap{position:sticky;top:0;z-index:99;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12);padding:10px 12px 0;}
+.search-sticky-wrap .search-row{display:flex;gap:8px;align-items:center;margin-bottom:0;}  .search-sticky-wrap .search-row .search-box{flex:1;}
+.btn-buscar{display:flex;align-items:center;gap:6px;padding:0 16px;height:44px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:.9rem;font-family:'Barlow',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .2s;}
+.btn-buscar:hover{background:#0a2070;}
+.btn-buscar svg{flex-shrink:0;}
+.cat-scroll{display:flex;overflow-x:auto;gap:4px;padding:0 0 10px;scrollbar-width:none;}
+.cat-scroll::-webkit-scrollbar{display:none;}
+.cat-btn{white-space:nowrap;padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Barlow',sans-serif;}
+.cat-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.search-box{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:30px;padding:10px 16px;margin-bottom:0;transition:border .2s;}
+.search-box:focus-within{border-color:var(--blue);background:#fff;}
+.search-box input{border:none;background:none;flex:1;font-size:.9rem;font-family:'Barlow',sans-serif;color:var(--text);outline:none;}
+.search-box input::placeholder{color:var(--muted);}
+.search-clear{background:none;border:none;cursor:pointer;font-size:1rem;color:var(--muted);padding:0;display:none;}
+header{padding:14px 16px 12px;}
+/* â”€â”€ CATEGORIAS VISUAIS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.cat-visual-scroll{display:flex;overflow-x:auto;gap:8px;padding:6px 0 10px;scrollbar-width:none;}
+.cat-visual-scroll::-webkit-scrollbar{display:none;}
+.cat-visual-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 14px 7px;border-radius:14px;border:2px solid var(--border);background:#fff;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0;font-family:'Barlow',sans-serif;min-width:72px;}
+.cat-visual-btn .cat-v-icon{font-size:1.65rem;line-height:1.1;}
+.cat-visual-btn .cat-v-label{font-size:.7rem;font-weight:700;color:var(--muted);letter-spacing:.2px;}
+.cat-visual-btn.active{background:var(--blue);border-color:var(--blue);}
+.cat-visual-btn.active .cat-v-label{color:#fff;}
+/* â”€â”€ FAVORITOS / PÃ“DIO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.favoritos-section{background:linear-gradient(160deg,#0c2580 0%,#1a3fa8 60%,#0D2B8C 100%);padding:20px 12px 24px;margin-bottom:0;box-shadow:0 6px 20px rgba(0,0,0,.18);}
+.favoritos-header{text-align:center;margin-bottom:16px;}
+.favoritos-titulo{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:#F5C842;text-transform:uppercase;letter-spacing:2px;}
+.favoritos-sub{font-size:.74rem;color:rgba(255,255,255,.55);margin-top:3px;}
+/* â”€â”€ HOME PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+#home-section{padding:16px 12px 8px;display:block;}
+.home-welcome{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:var(--blue);margin-bottom:2px;}
+.home-sub{font-size:.8rem;color:var(--muted);margin-bottom:14px;}
+.home-cats-title{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+#main-cardapio{display:block;}
+#resultados-busca{display:none;padding:8px 0;}
+.resultado-titulo{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);padding:8px 12px 4px;}
+.btn-voltar-home{background:none;border:none;color:var(--blue);font-size:.82rem;font-weight:700;cursor:pointer;padding:4px 0 12px;font-family:'Barlow',sans-serif;display:flex;align-items:center;gap:4px;}

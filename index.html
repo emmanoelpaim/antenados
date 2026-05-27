@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cardápio – Lanchonete e Pastelaria do Assis</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/carousel.css">
+</head>
+<body><header>
+    <div class="logo-topo">LANCHONETE E PASTELARIA DO</div>
+    <div class="nome-loja">ASSIS</div>
+    <div class="subtitulo">35 anos de história · Massa caseira de tradição</div>
+</header>
+<div class="search-sticky-wrap" id="search-sticky-wrap">
+        <div class="search-row">
+        <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="search-input" placeholder="O que você quer comer hoje?" autocomplete="off" oninput="filtrarBusca(this.value)">
+        <button class="search-clear" id="search-clear" onclick="limparBusca()">✕</button>
+    </div>
+        <button class="btn-buscar" onclick="executarBusca()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Buscar
+        </button>
+    </div>
+    <div class="cat-visual-scroll" id="cat-visual-scroll">
+        <button class="cat-visual-btn" data-grupo="lanches" onclick="scrollParaGrupo('lanches',this)"><span class="cat-v-icon">🍔</span><span class="cat-v-label">Lanches</span></button>
+        <button class="cat-visual-btn" data-grupo="salgados" onclick="scrollParaGrupo('salgados',this)"><span class="cat-v-icon">🥟</span><span class="cat-v-label">Salgados</span></button>
+        <button class="cat-visual-btn" data-grupo="doces" onclick="scrollParaGrupo('doces',this)"><span class="cat-v-icon">🍰</span><span class="cat-v-label">Doces</span></button>
+        <button class="cat-visual-btn" data-grupo="bebidas" onclick="scrollParaGrupo('bebidas',this)"><span class="cat-v-icon">🥤</span><span class="cat-v-label">Bebidas</span></button>
+        <button class="cat-visual-btn" data-grupo="quentes" onclick="scrollParaGrupo('quentes',this)"><span class="cat-v-icon">☕</span><span class="cat-v-label">Beb. Quentes</span></button>
+    </div>
+</div>
+<div class="cat-scroll" id="cat-scroll" style="display:none"></div>
+<section class="favoritos-section">
+    <div class="favoritos-header">
+        <div class="favoritos-titulo">⭐ Favoritos da Casa</div>
+        <div class="favoritos-sub">Os mais pedidos pelos nossos clientes</div>
+    </div>
+    <div class="podio-wrap" id="podio-wrap">
+        <div style="color:rgba(255,255,255,.4);font-size:.8rem;text-align:center;width:100%;padding:20px 0">Carregando...</div>
+    </div>
+</section>
+<div id="resultados-busca"></div>
+<main id="main-cardapio"></main>
+<!-- CONFIRMAÇÃO -->
+<div class="confirmacao-overlay" id="conf-overlay">
+    <div class="confirmacao-box">
+        <div class="confirmacao-titulo">✅ Pedido pronto!</div>
+        <div class="confirmacao-sub">Revise e envie pelo WhatsApp</div>
+        <div id="conf-reserva-badge" class="conf-reserva-badge" style="display:none"></div>
+        <div class="confirmacao-resumo">
+            <div class="conf-linha"><span class="conf-linha-label">Nome</span><span id="conf-nome">—</span></div>
+            <div class="conf-linha"><span class="conf-linha-label">Telefone</span><span id="conf-tel">—</span></div>
+            <div class="conf-linha"><span class="conf-linha-label">Local</span><span id="conf-local">—</span></div>
+            <div class="conf-linha"><span class="conf-linha-label">Pagamento</span><span id="conf-pag">—</span></div>
+        </div>
+        <div class="conf-itens" id="conf-itens"></div>
+        <div class="conf-total"><span>Total</span><span id="conf-total">R$ 0,00</span></div>
+        <br>
+        <button class="btn-confirmar-whats" id="btn-conf-whats">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Enviar pelo WhatsApp
+        </button>
+        <button class="btn-voltar-conf" onclick="fecharConfirmacao()">← Voltar e editar</button>
+    </div>
+</div>
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-saber-mais" onclick="fecharModal(event)">
+    <div class="modal-box">
+        <button class="modal-fechar" onclick="document.getElementById('modal-saber-mais').classList.remove('open')">✕</button>
+        <div class="modal-titulo" id="modal-nome"></div>
+        <div class="modal-desc" id="modal-desc"></div>
+    </div>
+</div>
+<!-- FAB -->
+<button class="carrinho-fab hidden" id="fab-carrinho" onclick="abrirCarrinho()">
+    <span>🛒 Ver carrinho</span>
+    <span class="carrinho-badge" id="badge-qtd">0</span>
+    <span id="fab-total" style="font-size:.85rem;opacity:.9"></span>
+</button>
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="fecharCarrinho()"></div>
+<div class="drawer" id="drawer">
+    <div class="drawer-header">
+        <h3>🛒 Seu pedido</h3>
+        <button class="btn-fechar-drawer" onclick="fecharCarrinho()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg> Continuar comprando</button>
+    </div>
+    <div class="drawer-body">
+        <div id="lista-carrinho"></div>
+        <div class="total-linha"><span>Total</span><span id="total-valor">R$ 0,00</span></div>
+        <!-- RESERVA -->
+        <div class="reserva-section">
+            <h4>📅 Reservar para outro horário?</h4>
+            <p>Pedido para agora? Deixa em branco. Quer agendar? Ativa aqui:</p>
+            <div class="reserva-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle-reserva" onchange="toggleReserva(this.checked)">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span id="toggle-label" style="font-size:.85rem;font-weight:600;color:var(--muted)">Pedido para agora</span>
+            </div>
+            <div class="reserva-campos" id="reserva-campos">
+                <div class="reserva-campo">
+                    <label>📅 Dia</label>
+                    <select id="reserva-data" onchange="gerarHorarios()"><option value="">Selecione o dia</option></select>
+                </div>
+                <div class="reserva-campo">
+                    <label>🕐 Horário</label>
+                    <select id="reserva-hora"><option value="">Selecione</option></select>
+                </div>
+            </div>
+            <div class="reserva-aviso" id="reserva-aviso">⚠️ Só aceitamos reservas com até 3 dias de antecedência para garantir a qualidade!</div>
+        </div>
+        <!-- FORM -->
+        <div class="form-pedido">
+            <h4>Dados do pedido</h4>
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Seu nome *</label>
+                    <input type="text" id="ped-nome" placeholder="Como você se chama?" oninput="salvarEstado()">
+                    <div class="cookie-hint" id="hint-nome">✓ Preenchido automaticamente</div>
+                </div>
+                <div class="form-field">
+                    <label>Telefone</label>
+                    <input type="tel" id="ped-tel" placeholder="(41) 99999-9999" oninput="formatarTel(this);salvarEstado()">
+                    <div class="cookie-hint" id="hint-tel">✓ Preenchido automaticamente</div>
+                </div>
+            </div>
+            <div class="form-field">
+                <label>Onde você está? *</label>
+                <div class="tipo-local">
+                    <button type="button" class="tipo-btn sel" id="tipo-box" onclick="selecionarTipo('box')">📦 Box</button>
+                    <button type="button" class="tipo-btn" id="tipo-caminhao" onclick="selecionarTipo('caminhao')">🚚 Caminhão</button>
+                </div>
+                <div id="campo-box"><input type="text" id="ped-box" placeholder="Número ou nome do box (ex: Box 142)" oninput="salvarEstado()"></div>
+                <div id="campo-caminhao" style="display:none">
+                    <input type="text" id="ped-placa" placeholder="Placa do caminhão" oninput="formatarPlaca(this);salvarEstado()" maxlength="8">
+                    <div class="hint">Mercosul: ABC1D23 · Antigo: ABC-1234</div>
+                </div>
+            </div>
+            <div class="form-field">
+                <label>Pagamento *</label>
+                <div class="pay-opts">
+                    <div class="pay-opt sel" id="pay-pix" onclick="selecionarPag('pix')"><span class="pay-icon">📱</span>PIX</div>
+                    <div class="pay-opt" id="pay-cartao" onclick="selecionarPag('cartao')"><span class="pay-icon">💳</span>Cartão</div>
+                    <div class="pay-opt" id="pay-dinheiro" onclick="selecionarPag('dinheiro')"><span class="pay-icon">💵</span>Dinheiro</div>
+                </div>
+                <div id="campo-troco" style="display:none;margin-top:8px">
+                    <input type="number" id="ped-troco" placeholder="Troco para quanto? (ex: R$ 50,00)"
+                           min="0" step="0.01"
+                           style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:.9rem;font-family:'Barlow',sans-serif;box-sizing:border-box"
+                           oninput="if(this.value){ativarSemTroco(false)};salvarEstado()">
+                    <button type="button" id="btn-sem-troco" onclick="toggleSemTroco()"
+                            style="margin-top:8px;width:100%;padding:11px;background:#f8f9fa;border:1.5px solid var(--border);border-radius:8px;font-size:.88rem;cursor:pointer;color:#555;font-family:'Barlow',sans-serif;transition:all .2s">
+                        💵 Não preciso de troco
+                    </button>
+                </div>
+                <div id="info-pix" style="display:block;margin-top:8px;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:10px;font-size:.82rem;color:#2e7d32;">💚 <strong>PIX:</strong> Informe ao atendente ou escaneie na entrega.</div>
+            </div>
+            <div class="form-field">
+                <label>Observações gerais</label>
+                <textarea id="ped-obs" rows="2" placeholder="Alguma instrução especial? (opcional)" style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-family:'Barlow',sans-serif;resize:none;font-size:.85rem;"></textarea>
+            </div>
+            <button class="btn-enviar-whats" onclick="abrirConfirmacao()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Enviar pedido no WhatsApp
+            </button>
+            <p class="nota-final">Ao clicar, o WhatsApp abrirá com o pedido já formatado. Só confirme o envio! 🙏</p>
+        </div>
+    </div>
+</div>
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/state.js"></script>
+<script src="js/render.js"></script>
+<script src="js/produto.js"></script>
+<script src="js/carrinho.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/checkout.js"></script>
+<script src="js/horario.js"></script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

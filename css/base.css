@@ -1,0 +1,3 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Barlow',sans-serif;background:var(--light);color:var(--text);min-height:100vh;}
+main{max-width:680px;margin:0 auto;padding:16px 12px 120px;}
